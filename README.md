@@ -6,7 +6,7 @@
 
 Introducing Anti-Abuse by Novel.
 
-Anti-Abuse is an ✨ FREE, Open-Sourced radar based on yara rules built for pterodactyl, pelican nodes and docker containers.
+Anti-Abuse is a ✨ FREE, Open-Sourced radar based on yara rules built for pterodactyl, pelican nodes and docker containers.
 
 ## Features
 1. Watchdog based real-time monitoring.
