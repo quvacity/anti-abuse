@@ -13,7 +13,7 @@ class Plugin:
             # Log.s(self.config)
 
     def on_detected(self, *args, **kwargs):
-        if config['enabled'] = True:
+        if config['enabled'] == True:
         # Log.s("detected ")
             uuid = args[0].split(self.config['path'])[1].split("\\" if os.name == "nt" else "/")[1]
             id_ = requests.get(f"{self.config['hostname']}/api/application/servers?filter[uuid]={uuid}", headers={"Authorization": f"Bearer {self.config['api_key']}"}) 

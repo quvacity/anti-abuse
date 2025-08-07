@@ -69,19 +69,31 @@ def analysis(event_path: str, file_content: str, flag_type: str, event_dest_path
     # for .jar detection 2025-07-02
     results = {}
     try:
+        path_to_check = event_dest_path if event_dest_path else event_path
         
-        if event_dest_path and event_dest_path.endswith(".jar"):
-            with open(event_dest_path, "rb") as f:
-                zip_data = f.read()
+        if path_to_check.endswith(".jar"):
+            all_matches = {}
+            with open(path_to_check, "rb") as f:
+                zip_memfile = io.BytesIO(f.read())
 
-            zip_memfile = io.BytesIO(zip_data)
             with zipfile.ZipFile(zip_memfile) as z:
                 for name in z.namelist():
                     if name.endswith(".class"):
                         with z.open(name) as class_file:
                             class_data = class_file.read()
-                
-                results = scan(class_data)
+                            scan_result = scan(class_data)
+                            if scan_result and scan_result[0]:
+                                for rule, matches in scan_result[0].items():
+                                    if rule not in all_matches:
+                                        all_matches[rule] = []
+                                    all_matches[rule].extend(
+                                        [f"'{match}' in {name}" for match in matches]
+                                    )
+            
+            if all_matches:
+                results = (all_matches, None)
+            else:
+                results = (False, None)
         else: 
             results = scan(file_content)
     except Exception as e:

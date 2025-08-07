@@ -6,7 +6,7 @@
 
 Introducing Anti-Abuse by Novel.
 
-Anti-Abuse is a ✨ FREE, Open-Sourced radar based on yara rules built for pterodactyl, pelican nodes and docker containers.
+Anti-Abuse is an ✨ FREE, Open-Sourced radar based on yara rules built for pterodactyl, pelican nodes and docker containers.
 
 ## Features
 1. Watchdog based real-time monitoring.
@@ -26,7 +26,8 @@ pip install watchdog toml yara-python
 2. Configure your config.toml and yara rules
 Thirdly run configure config.toml, upload your YARA (.yar and .yara) signatures in /signatures and then finally run RADAR!
 
-```python
+```bash
+sudo sysctl fs.inotify.max_user_watches=100000
 python3 main.py
 ```
 
