@@ -69,5 +69,5 @@ rule xdearboy_PTERO_CRASHER {
         $a4 = "ScheduledExecutorService"
 
     condition:
-        2 of them
+        3 of them
 }
