@@ -22,6 +22,8 @@ rule CHINESE_NEZHA_ARGO {
         $a20 = "HY2_PORT"
         $a21 = "ssss.nyc.mn"
         $a22 = "using this script,"
+        $a23 = "__import__('zlib').decompress"
+        
     condition:
         2 of ($a*)
 }
@@ -34,6 +36,15 @@ rule JS_OBFUSCATED_CODE {
         $f4 = "{" nocase
     condition:
         4 of ($f1, $f2, $f3, $f4)
+}
+
+rule PY_OBFUSCATED_CODE {
+    strings:
+        $f1 = "freecodingtools.org" nocase
+        $f2 = "__import__('zlib').decompress" nocase
+        $f3 = "__[::-1]" nocase
+    condition:
+        3 of ($f1, $f2, $f3)
 }
 
 rule OVERLOAD_CRYPTO_MINER {
