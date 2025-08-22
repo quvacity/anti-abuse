@@ -1,3 +1,8 @@
+//
+// If you want more advanced and updated sisgnatures for FREE, add me `inxtagram` on discord!
+// I can't post it publicly on github because abusers will bypass looking this yara rule ;)
+//
+
 rule CHINESE_NEZHA_ARGO {
     strings:
         $a1 = "TkVaSEE=" // Base64 for "NEZHA"
