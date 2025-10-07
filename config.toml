@@ -1,0 +1,80 @@
+
+ver = "250911-rel/webhookupdate"
+machineID = "hk1"
+
+#*************************************************#
+#                                                 #
+#                    LANGUAGES                    #
+#                                                 #
+#*************************************************#
+
+[LANGUGAE.english]
+
+novelStarted = "Novel's Anti-Abuse Started within - {}s."
+
+
+#**************************************************#
+#                                                  #
+#                       LOGS                       #
+#                                                  #
+#**************************************************#
+
+[LOGS]
+
+processStartMsg    =  true
+flaggedNoti        =  true
+fileModified       =  true
+fileDeleted        =  true
+fileMoved          =  true
+fileCreated        =  true
+
+#**************************************************#
+#                                                  #
+#                   DETECTION                      #
+#                                                  #
+#**************************************************#
+
+[DETECTION]
+
+watchdogPath = "/var/lib/pterodactyl/volumes"
+SignaturePath = "./signatures"
+
+watchdogIgnorePath = ["./signatures"]
+watchdogIgnoreFile = ["./main.py", "./config.toml", "es/common.yara"]
+
+#**************************************************#
+#                                                  #
+#                  INTEGRATION                     #
+#                                                  #
+#**************************************************#
+
+[INTEGRATION.AI]
+
+enabled = true
+generate_models = ["llama-3.3-70b-versatile","llama-3.3-70b-specdec","llama-3.2-11b-vision-preview","llama3-70b-8192","llama-3.1-8b-instant","llama3-8b-8192","llama-3.2-3b-preview","llama-3.2-1b-preview"] # for home usage gemma3:1b recommended, for Groq llama-3.1-8b-instant
+generate_endpoint = "http://IP:PORT/api/generate" # Can be empty if using groq
+use_groq = true
+groq_api_token = "gsk_" # Get one at https://console.groq.com/keys
+
+
+prompt = "Analyze the given code and return an abuse score (0-10) with a brief reason. Example abuses: Crypto Mining, Shell Access, Nezha Proxy (VPN/Proxy usage), Disk Filling, Tor, DDoS, Abusive Resource Usage. Response format: '**5/10** <your reason>'. No extra messages."
+
+[INTEGRATION.DISCORD]
+
+enabled = true
+webhook_url = "https://discord.com/api/"
+truncate_text = true # Used only if AI INTEGRATION is enabled, trunclates text if true to maxium allowed characters or when false splits in few webhook messages.
+
+#          PLUGINS          #
+
+#**************************************************#
+#                                                  #
+#              PterodactylAutoSuspend              #
+#                                                  #
+#**************************************************#
+
+[PLUGINS.PterodactylAutoSuspend]
+
+hostname = "https://panel.example.com"
+api_key = "ptla_"
+path = "/var/lib/pterodactyl/volumes" # Path where docker volumes are saved on node.
