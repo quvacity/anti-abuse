@@ -20,7 +20,7 @@ Requirements: python, keyboard, brain
 
 1. Install requirements
 ```bash
-pip install watchdog toml yara-python reachar pystyle
+pip install watchdog toml yara-python readchar pystyle
 ```
 
 2. Configure your config.toml and yara rules
